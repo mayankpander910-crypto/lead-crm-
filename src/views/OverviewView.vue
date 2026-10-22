@@ -44,7 +44,7 @@ const quotaPercent = computed(() => {
             Welcome back, {{ store.currentUser.name.split(' ')[0] }}
           </h2>
           <span
-            class="inline-flex items-center rounded-md px-2 py-0.5 text-[11px] font-semibold"
+            class="inline-flex items-center rounded-md px-2 py-0.5 text-[0.6875rem] font-semibold"
             :class="
               store.permissions.isAdmin
                 ? 'bg-slate-900 text-white'

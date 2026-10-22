@@ -34,7 +34,7 @@ function handleComplete(taskId, title) {
     <div>
       <div class="flex items-center justify-between px-5 py-4 border-b border-slate-100">
         <div>
-          <h3 class="text-[14px] font-semibold text-slate-900">Upcoming Follow-ups</h3>
+          <h3 class="text-sm font-semibold text-slate-900">Upcoming Follow-ups</h3>
           <p class="mt-0.5 text-xs text-slate-500">Scheduled calls & overdue reminders</p>
         </div>
         <Button
@@ -80,9 +80,9 @@ function handleComplete(taskId, title) {
               <StatusTag :value="store.getTaskBucket(task)" variant="task" />
             </div>
 
-            <div class="mt-1 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-[11px] text-slate-500">
+            <div class="mt-1 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-[0.6875rem] text-slate-500">
               <span class="inline-flex items-center gap-1 tabular-nums">
-                <i class="pi pi-calendar text-[10px] text-slate-400" />
+                <i class="pi pi-calendar text-[0.625rem] text-slate-400" />
                 {{ formatShortDate(task.dueDate) }}
                 <template v-if="task.dueTime">· {{ formatTime12h(task.dueTime) }}</template>
               </span>
@@ -93,7 +93,7 @@ function handleComplete(taskId, title) {
                 class="inline-flex items-center gap-1 crm-accent-text hover:underline font-medium cursor-pointer"
                 @click="store.openLeadDetailDrawer(task.leadId)"
               >
-                <i class="pi pi-building text-[10px]" />
+                <i class="pi pi-building text-[0.625rem]" />
                 {{ store.getLeadById(task.leadId)?.company }}
               </button>
             </div>

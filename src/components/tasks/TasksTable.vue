@@ -129,7 +129,7 @@ function clearFilters() {
             <span v-if="store.overdueTasks.length > 0 && dueTodayCount > 0"> · </span>
             <span v-if="dueTodayCount > 0">{{ dueTodayCount }} due today</span>
           </p>
-          <p class="text-[11px] text-amber-800/85">
+          <p class="text-[0.6875rem] text-amber-800/85">
             In-app follow-up alerts stay synchronized locally across sessions.
           </p>
         </div>
@@ -163,7 +163,7 @@ function clearFilters() {
           >
             <span>{{ tab.label }}</span>
             <span
-              class="rounded-full px-1.5 py-0.2 text-[10px] tabular-nums"
+              class="rounded-full px-1.5 py-0.2 text-[0.625rem] tabular-nums"
               :class="
                 tab.key === 'Overdue' && tab.count > 0
                   ? 'bg-rose-100 text-rose-700 font-bold'
@@ -271,7 +271,7 @@ function clearFilters() {
 
         <Column field="title" header="Task & Agenda" sortable>
           <template #body="{ data }">
-            <div class="max-w-[205px] xl:max-w-[235px]">
+            <div class="max-w-[12.8rem] xl:max-w-[14.7rem]">
               <p
                 class="text-xs font-semibold truncate"
                 :class="
@@ -282,7 +282,7 @@ function clearFilters() {
               >
                 {{ data.title }}
               </p>
-              <p v-if="data.description" class="mt-0.5 text-[11px] text-slate-500 truncate">
+              <p v-if="data.description" class="mt-0.5 text-[0.6875rem] text-slate-500 truncate">
                 {{ data.description }}
               </p>
             </div>
@@ -297,8 +297,8 @@ function clearFilters() {
               class="inline-flex items-center gap-1.5 text-xs font-medium crm-accent-text hover:underline cursor-pointer whitespace-nowrap"
               @click="store.openLeadDetailDrawer(data.leadId)"
             >
-              <i class="pi pi-building text-[11px]" />
-              <span class="truncate max-w-[145px]">{{ store.getLeadById(data.leadId)?.company }}</span>
+              <i class="pi pi-building text-[0.6875rem]" />
+              <span class="truncate max-w-[9.1rem]">{{ store.getLeadById(data.leadId)?.company }}</span>
             </button>
             <span v-else class="text-xs text-slate-400">General</span>
           </template>
@@ -316,7 +316,7 @@ function clearFilters() {
               >
                 {{ formatShortDate(data.dueDate) }}
               </p>
-              <p class="text-[11px] text-slate-400">{{ formatTime12h(data.dueTime) }}</p>
+              <p class="text-[0.6875rem] text-slate-400">{{ formatTime12h(data.dueTime) }}</p>
             </div>
           </template>
         </Column>

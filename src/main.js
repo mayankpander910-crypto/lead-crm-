@@ -10,6 +10,9 @@ import ConfirmationService from 'primevue/confirmationservice'
 import App from './App.vue'
 import router from './router'
 import { CrmAuraPreset } from './utils/themeManager'
+import { registerChartJs } from './utils/chartSetup'
+
+registerChartJs()
 
 const app = createApp(App)
 

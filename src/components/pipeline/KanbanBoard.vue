@@ -155,7 +155,7 @@ function handleDrop(e, targetStage) {
         <section
           v-for="col in columns"
           :key="col.stage"
-          class="w-[276px] shrink-0 rounded-xl border transition-all duration-150 flex flex-col max-h-[calc(100vh-245px)] min-h-[460px]"
+          class="w-[17.25rem] shrink-0 rounded-xl border transition-all duration-150 flex flex-col max-h-[calc(100vh-245px)] min-h-[460px]"
           :class="
             dragOverStage === col.stage
               ? 'bg-blue-50/60 border-blue-400 ring-2 ring-blue-500/20'
@@ -174,7 +174,7 @@ function handleDrop(e, targetStage) {
                 />
                 <h3 class="text-xs font-semibold text-slate-900">{{ col.stage }}</h3>
                 <span
-                  class="inline-flex items-center justify-center rounded-md bg-slate-100 px-1.5 py-0.5 text-[11px] font-semibold text-slate-600 tabular-nums"
+                  class="inline-flex items-center justify-center rounded-md bg-slate-100 px-1.5 py-0.5 text-[0.6875rem] font-semibold text-slate-600 tabular-nums"
                 >
                   {{ col.leads.length }}
                 </span>
@@ -190,7 +190,7 @@ function handleDrop(e, targetStage) {
                   class="flex h-6 w-6 items-center justify-center rounded-md text-slate-400 hover:bg-slate-100 hover:text-slate-800 transition-colors cursor-pointer"
                   @click="store.openCreateLeadDrawer(col.stage)"
                 >
-                  <i class="pi pi-plus text-[10px]" />
+                  <i class="pi pi-plus text-[0.625rem]" />
                 </button>
               </div>
             </div>
@@ -218,7 +218,7 @@ function handleDrop(e, targetStage) {
               <p class="text-xs font-medium text-slate-400">No deals in stage</p>
               <button
                 type="button"
-                class="mt-1.5 text-[11px] font-medium crm-accent-text hover:underline cursor-pointer"
+                class="mt-1.5 text-[0.6875rem] font-medium crm-accent-text hover:underline cursor-pointer"
                 @click="store.openCreateLeadDrawer(col.stage)"
               >
                 + Add in {{ col.stage }}

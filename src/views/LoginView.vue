@@ -147,7 +147,7 @@ function quickSignInAs(user) {
         </div>
 
         <span
-          class="inline-flex items-center gap-1.5 rounded-full bg-slate-950/60 backdrop-blur-md px-3 py-1 text-[11px] font-medium text-slate-200 ring-1 ring-white/15"
+          class="inline-flex items-center gap-1.5 rounded-full bg-slate-950/60 backdrop-blur-md px-3 py-1 text-[0.6875rem] font-medium text-slate-200 ring-1 ring-white/15"
         >
           <span class="h-1.5 w-1.5 rounded-full bg-emerald-400" />
           Live Pipeline Suite
@@ -165,17 +165,17 @@ function quickSignInAs(user) {
         >
           <div>
             <p class="text-base font-bold text-white tabular-nums">{{ store.allLeads.length }}</p>
-            <p class="text-[11px] text-slate-300">Active Leads</p>
+            <p class="text-[0.6875rem] text-slate-300">Active Leads</p>
           </div>
           <div>
             <p class="text-base font-bold text-emerald-400 tabular-nums">
               {{ formatCompactCurrency(totalWonRevenue) }}
             </p>
-            <p class="text-[11px] text-slate-300">Won Revenue</p>
+            <p class="text-[0.6875rem] text-slate-300">Won Revenue</p>
           </div>
           <div>
             <p class="text-base font-bold text-white tabular-nums">{{ store.users.length }}</p>
-            <p class="text-[11px] text-slate-300">Team Members</p>
+            <p class="text-[0.6875rem] text-slate-300">Team Members</p>
           </div>
         </div>
       </div>
@@ -183,7 +183,7 @@ function quickSignInAs(user) {
 
     <!-- Right Column: Clean Minimal Sign-In Form -->
     <div class="flex-1 flex flex-col justify-center bg-slate-50/50 px-5 sm:px-8 lg:px-10 py-8">
-      <div class="w-full max-w-[410px] mx-auto space-y-5">
+      <div class="w-full max-w-[25.625rem] mx-auto space-y-5">
         <!-- Mobile Visual Hero Banner (< 768px) -->
         <div class="md:hidden relative h-40 w-full overflow-hidden rounded-2xl bg-slate-950 shadow-sm">
           <img
@@ -299,7 +299,7 @@ function quickSignInAs(user) {
                 <div class="w-full border-t border-slate-200" />
               </div>
               <div class="relative flex justify-center">
-                <span class="bg-white px-2.5 text-[10px] font-semibold uppercase tracking-widest text-slate-400">
+                <span class="bg-white px-2.5 text-[0.625rem] font-semibold uppercase tracking-widest text-slate-400">
                   Quick Role Login
                 </span>
               </div>
@@ -316,12 +316,12 @@ function quickSignInAs(user) {
               >
                 <UserAvatar :name="card.user.name" :color="card.user.avatarColor" />
                 <span
-                  class="inline-flex items-center rounded px-1.5 py-0.5 text-[10px] font-semibold"
+                  class="inline-flex items-center rounded px-1.5 py-0.5 text-[0.625rem] font-semibold"
                   :class="card.badgeClass"
                 >
                   {{ card.roleLabel }}
                 </span>
-                <span class="text-[10px] font-mono text-slate-400 truncate max-w-full">
+                <span class="text-[0.625rem] font-mono text-slate-400 truncate max-w-full">
                   {{ card.user.password }}
                 </span>
               </button>
@@ -330,12 +330,12 @@ function quickSignInAs(user) {
             <div class="text-center">
               <button
                 type="button"
-                class="inline-flex items-center gap-1 text-[11px] font-medium text-slate-400 hover:text-slate-700 cursor-pointer"
+                class="inline-flex items-center gap-1 text-[0.6875rem] font-medium text-slate-400 hover:text-slate-700 cursor-pointer"
                 @click="showAllAccounts = !showAllAccounts"
               >
                 <span>{{ showAllAccounts ? 'Hide accounts' : `All ${store.users.length} accounts` }}</span>
                 <i
-                  class="text-[9px]"
+                  class="text-[0.5625rem]"
                   :class="showAllAccounts ? 'pi pi-chevron-up' : 'pi pi-chevron-down'"
                 />
               </button>
@@ -353,7 +353,7 @@ function quickSignInAs(user) {
                 @click="quickSignInAs(u)"
               >
                 <span class="font-medium text-slate-800 truncate">{{ u.name }}</span>
-                <span class="text-[10px] font-mono text-slate-400 shrink-0">
+                <span class="text-[0.625rem] font-mono text-slate-400 shrink-0">
                   {{ u.role === 'Sales Representative' ? 'Worker' : u.role }} · {{ u.password }}
                 </span>
               </button>

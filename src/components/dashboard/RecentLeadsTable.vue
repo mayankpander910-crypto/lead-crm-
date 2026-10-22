@@ -30,7 +30,7 @@ function onRowClick(event) {
   <div class="crm-card overflow-hidden">
     <div class="flex items-center justify-between px-5 py-4 border-b border-slate-100">
       <div>
-        <h3 class="text-[14px] font-semibold text-slate-900">Recent Leads</h3>
+        <h3 class="text-sm font-semibold text-slate-900">Recent Leads</h3>
         <p class="mt-0.5 text-xs text-slate-500">Latest opportunities added across channels</p>
       </div>
       <Button
@@ -64,11 +64,11 @@ function onRowClick(event) {
     >
       <Column header="Lead & Company">
         <template #body="{ data }">
-          <div class="flex items-center gap-2.5 min-w-[160px]">
+          <div class="flex items-center gap-2.5 min-w-[10rem]">
             <UserAvatar :name="data.name" :color="activeThemeMeta.hex" small />
             <div class="min-w-0">
               <p class="text-xs font-semibold text-slate-900 truncate">{{ data.name }}</p>
-              <p class="text-[11px] text-slate-500 truncate">{{ data.company }}</p>
+              <p class="text-[0.6875rem] text-slate-500 truncate">{{ data.company }}</p>
             </div>
           </div>
         </template>
@@ -96,7 +96,7 @@ function onRowClick(event) {
               :color="store.getUserById(data.assignedTo)?.avatarColor ?? '#64748b'"
               small
             />
-            <span class="text-xs text-slate-600 truncate max-w-[105px]">
+            <span class="text-xs text-slate-600 truncate max-w-[6.6rem]">
               {{ store.getUserName(data.assignedTo) }}
             </span>
           </div>

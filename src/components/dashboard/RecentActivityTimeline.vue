@@ -30,7 +30,7 @@ function activityVisual(type) {
 <template>
   <div class="crm-card overflow-hidden">
     <div class="px-5 py-4 border-b border-slate-100">
-      <h3 class="text-[14px] font-semibold text-slate-900">Recent Activity</h3>
+      <h3 class="text-sm font-semibold text-slate-900">Recent Activity</h3>
       <p class="mt-0.5 text-xs text-slate-500">Real-time team updates across deals & tasks</p>
     </div>
 
@@ -49,12 +49,12 @@ function activityVisual(type) {
             class="absolute -left-3.5 flex h-7 w-7 items-center justify-center rounded-full ring-4 ring-white"
             :class="activityVisual(act.type).box"
           >
-            <i :class="[activityVisual(act.type).icon, 'text-[11px]']" />
+            <i :class="[activityVisual(act.type).icon, 'text-[0.6875rem]']" />
           </span>
 
           <div class="flex items-baseline justify-between gap-2">
             <p class="text-xs font-semibold text-slate-900">{{ act.title }}</p>
-            <time class="shrink-0 text-[11px] text-slate-400 tabular-nums">
+            <time class="shrink-0 text-[0.6875rem] text-slate-400 tabular-nums">
               {{ formatRelativeTime(act.timestamp) }}
             </time>
           </div>
@@ -63,7 +63,7 @@ function activityVisual(type) {
             {{ act.description }}
           </p>
 
-          <div class="mt-1 flex items-center gap-2 text-[11px] text-slate-400">
+          <div class="mt-1 flex items-center gap-2 text-[0.6875rem] text-slate-400">
             <span>{{ store.getUserName(act.userId) }}</span>
             <template v-if="act.leadId && store.getLeadById(act.leadId)">
               <span>·</span>

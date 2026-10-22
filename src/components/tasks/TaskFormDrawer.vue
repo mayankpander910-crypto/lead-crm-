@@ -144,7 +144,7 @@ function handleSave() {
   <Drawer
     v-model:visible="store.taskFormVisible"
     position="right"
-    class="!w-full sm:!w-[480px]"
+    class="!w-full sm:!w-[30rem]"
     :pt="{
       header: { class: '!px-6 !py-4 border-b border-slate-200' },
       content: { class: '!p-0' },
@@ -174,7 +174,7 @@ function handleSave() {
           class="w-full"
           :invalid="Boolean(titleError)"
         />
-        <p v-if="titleError" class="text-[11px] text-rose-600">{{ titleError }}</p>
+        <p v-if="titleError" class="text-[0.6875rem] text-rose-600">{{ titleError }}</p>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">

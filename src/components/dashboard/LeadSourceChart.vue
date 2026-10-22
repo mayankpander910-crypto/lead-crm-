@@ -2,8 +2,8 @@
 import { computed } from 'vue'
 import { Doughnut } from 'vue-chartjs'
 import ChartCard from '@/components/common/ChartCard.vue'
-import { BASE_TOOLTIP_STYLE } from '@/utils/chartSetup'
-import { activeThemeMeta } from '@/utils/themeManager'
+import { getBaseTooltipStyle } from '@/utils/chartSetup'
+import { activeThemeMeta, scaledFontSize } from '@/utils/themeManager'
 import { useCrmStore } from '@/stores/crmStore'
 
 const store = useCrmStore()
@@ -52,11 +52,11 @@ const chartOptions = computed(() => ({
         pointStyle: 'circle',
         padding: 14,
         color: '#334155',
-        font: { size: 11, weight: 500 }
+        font: { size: scaledFontSize(11), weight: 500 }
       }
     },
     tooltip: {
-      ...BASE_TOOLTIP_STYLE,
+      ...getBaseTooltipStyle(),
       callbacks: {
         label: (ctx) => {
           const val = Number(ctx.raw) || 0

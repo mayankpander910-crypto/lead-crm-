@@ -102,7 +102,7 @@ function handleDeleteLead() {
   <Drawer
     v-model:visible="store.leadDetailVisible"
     position="right"
-    class="!w-full sm:!w-[580px]"
+    class="!w-full sm:!w-[36.25rem]"
     :pt="{
       header: { class: '!px-6 !py-4 border-b border-slate-200' },
       content: { class: '!p-0 bg-slate-50/50' }
@@ -147,7 +147,7 @@ function handleDeleteLead() {
       <div class="bg-white rounded-xl border border-slate-200 p-4 space-y-4">
         <div class="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <p class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">
+            <p class="text-[0.6875rem] font-semibold uppercase tracking-wider text-slate-400">
               Estimated Deal Value
             </p>
             <p class="mt-0.5 text-2xl font-bold text-slate-900 tabular-nums">
@@ -192,7 +192,7 @@ function handleDeleteLead() {
                   : 'text-slate-800'
               "
             >
-              <i class="pi pi-calendar text-[11px]" />
+              <i class="pi pi-calendar text-[0.6875rem]" />
               {{ formatDate(lead.nextFollowUp) }}
             </span>
           </div>
@@ -324,7 +324,7 @@ function handleDeleteLead() {
               >
                 {{ task.title }}
               </p>
-              <span class="text-[11px] text-slate-400 tabular-nums">
+              <span class="text-[0.6875rem] text-slate-400 tabular-nums">
                 Due {{ formatShortDate(task.dueDate) }}
                 <template v-if="task.dueTime">· {{ formatTime12h(task.dueTime) }}</template>
               </span>
@@ -353,7 +353,7 @@ function handleDeleteLead() {
               <p class="font-semibold text-slate-800">{{ item.title }}</p>
               <p class="text-slate-500 mt-0.5">{{ item.description }}</p>
             </div>
-            <span class="shrink-0 text-[11px] text-slate-400 tabular-nums">
+            <span class="shrink-0 text-[0.6875rem] text-slate-400 tabular-nums">
               {{ formatRelativeTime(item.timestamp) }}
             </span>
           </li>

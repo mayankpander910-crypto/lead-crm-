@@ -110,7 +110,7 @@ function handleSignOut() {
   <aside
     class="hidden lg:flex lg:flex-col lg:shrink-0 select-none transition-[width] duration-200 ease-out h-screen sticky top-0 z-30 border-r"
     :class="[
-      store.sidebarCollapsed ? 'w-[72px]' : 'w-60',
+      store.sidebarCollapsed ? 'w-[4.5rem]' : 'w-60',
       isDark ? 'bg-slate-950 border-slate-800/90 text-slate-300' : 'bg-white border-slate-200/90 text-slate-600'
     ]"
   >
@@ -142,13 +142,13 @@ function handleSignOut() {
         </div>
         <div v-if="!store.sidebarCollapsed" class="overflow-hidden">
           <span
-            class="block text-[14px] font-bold tracking-tight leading-none"
+            class="block text-sm font-bold tracking-tight leading-none"
             :class="isDark ? 'text-white' : 'text-slate-900'"
           >
             {{ store.settings.workspaceName }}
           </span>
           <span
-            class="block text-[10px] font-medium uppercase tracking-wider mt-1"
+            class="block text-[0.625rem] font-medium uppercase tracking-wider mt-1"
             :class="isDark ? 'text-slate-400' : 'text-slate-400'"
           >
             Revenue Suite
@@ -192,7 +192,7 @@ function handleSignOut() {
       <div class="space-y-1">
         <p
           v-if="!store.sidebarCollapsed"
-          class="px-3 pb-1 text-[10px] font-semibold uppercase tracking-widest"
+          class="px-3 pb-1 text-[0.625rem] font-semibold uppercase tracking-widest"
           :class="isDark ? 'text-slate-500' : 'text-slate-400'"
         >
           {{ store.permissions.isWorker ? 'My Portal' : 'Workspace' }}
@@ -203,7 +203,7 @@ function handleSignOut() {
           :key="item.to"
           type="button"
           :title="store.sidebarCollapsed ? item.label : undefined"
-          class="w-full flex items-center rounded-lg text-[13px] transition-all duration-150 cursor-pointer relative group"
+          class="w-full flex items-center rounded-lg text-[0.8125rem] transition-all duration-150 cursor-pointer relative group"
           :class="[
             store.sidebarCollapsed ? 'justify-center py-2.5 px-2' : 'justify-between px-3 py-2',
             isActive(item.to)
@@ -226,7 +226,7 @@ function handleSignOut() {
             <i
               :class="[
                 item.icon,
-                'text-[14px] shrink-0 transition-colors',
+                'text-sm shrink-0 transition-colors',
                 isActive(item.to)
                   ? isDark
                     ? 'text-blue-400'
@@ -241,7 +241,7 @@ function handleSignOut() {
 
           <span
             v-if="!store.sidebarCollapsed && item.badge"
-            class="inline-flex h-5 min-w-5 items-center justify-center rounded-full px-1.5 text-[11px] font-semibold tabular-nums"
+            class="inline-flex h-5 min-w-5 items-center justify-center rounded-full px-1.5 text-[0.6875rem] font-semibold tabular-nums"
             :class="
               item.urgent
                 ? 'bg-rose-500 text-white'
@@ -262,7 +262,7 @@ function handleSignOut() {
       <div class="space-y-1">
         <p
           v-if="!store.sidebarCollapsed"
-          class="px-3 pb-1 text-[10px] font-semibold uppercase tracking-widest"
+          class="px-3 pb-1 text-[0.625rem] font-semibold uppercase tracking-widest"
           :class="isDark ? 'text-slate-500' : 'text-slate-400'"
         >
           {{ store.permissions.canViewTeam ? 'Organization' : 'Account' }}
@@ -273,7 +273,7 @@ function handleSignOut() {
           :key="item.to"
           type="button"
           :title="store.sidebarCollapsed ? item.label : undefined"
-          class="w-full flex items-center rounded-lg text-[13px] transition-all duration-150 cursor-pointer relative group"
+          class="w-full flex items-center rounded-lg text-[0.8125rem] transition-all duration-150 cursor-pointer relative group"
           :class="[
             store.sidebarCollapsed ? 'justify-center py-2.5 px-2' : 'justify-between px-3 py-2',
             isActive(item.to)
@@ -295,7 +295,7 @@ function handleSignOut() {
             <i
               :class="[
                 item.icon,
-                'text-[14px] shrink-0 transition-colors',
+                'text-sm shrink-0 transition-colors',
                 isActive(item.to)
                   ? isDark
                     ? 'text-blue-400'
@@ -341,12 +341,12 @@ function handleSignOut() {
             </p>
             <div class="flex items-center gap-1.5 mt-1">
               <span
-                class="inline-flex items-center rounded px-1.5 py-0.2 text-[10px] font-semibold"
+                class="inline-flex items-center rounded px-1.5 py-0.2 text-[0.625rem] font-semibold"
                 :class="rolePillClass"
               >
                 {{ store.permissions.roleBadge }}
               </span>
-              <span class="truncate text-[10px] text-slate-400">
+              <span class="truncate text-[0.625rem] text-slate-400">
                 {{ store.currentUser.region }}
               </span>
             </div>
@@ -401,7 +401,7 @@ function handleSignOut() {
           <span class="block text-sm font-bold text-slate-900 leading-none">
             {{ store.settings.workspaceName }}
           </span>
-          <span class="block text-[10px] font-medium uppercase tracking-wider text-slate-400 mt-0.5">
+          <span class="block text-[0.625rem] font-medium uppercase tracking-wider text-slate-400 mt-0.5">
             {{ store.permissions.roleBadge }} · {{ store.permissions.scopeLabel }}
           </span>
         </div>
@@ -410,7 +410,7 @@ function handleSignOut() {
 
     <nav class="p-3 space-y-4 flex-1 overflow-y-auto">
       <div class="space-y-1">
-        <p class="px-3 pb-1 text-[10px] font-semibold uppercase tracking-widest text-slate-400">
+        <p class="px-3 pb-1 text-[0.625rem] font-semibold uppercase tracking-widest text-slate-400">
           {{ store.permissions.isWorker ? 'My Portal' : 'Workspace' }}
         </p>
         <button
@@ -431,7 +431,7 @@ function handleSignOut() {
           </span>
           <span
             v-if="item.badge"
-            class="inline-flex h-5 min-w-5 items-center justify-center rounded-full px-1.5 text-[11px] font-semibold tabular-nums"
+            class="inline-flex h-5 min-w-5 items-center justify-center rounded-full px-1.5 text-[0.6875rem] font-semibold tabular-nums"
             :class="item.urgent ? 'bg-rose-500 text-white' : 'bg-slate-100 text-slate-600'"
           >
             {{ item.badge }}
@@ -440,7 +440,7 @@ function handleSignOut() {
       </div>
 
       <div class="space-y-1 pt-2 border-t border-slate-100">
-        <p class="px-3 pb-1 text-[10px] font-semibold uppercase tracking-widest text-slate-400">
+        <p class="px-3 pb-1 text-[0.625rem] font-semibold uppercase tracking-widest text-slate-400">
           {{ store.permissions.canViewTeam ? 'Organization' : 'Account' }}
         </p>
         <button
@@ -472,7 +472,7 @@ function handleSignOut() {
             <p class="truncate text-xs font-semibold text-slate-900">
               {{ store.currentUser.name }}
             </p>
-            <p class="truncate text-[11px] text-slate-500">
+            <p class="truncate text-[0.6875rem] text-slate-500">
               {{ store.permissions.roleBadge }} · {{ store.currentUser.region }}
             </p>
           </div>

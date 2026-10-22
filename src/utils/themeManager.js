@@ -1,6 +1,7 @@
 import { computed, ref } from 'vue'
 import { definePreset, updatePrimaryPalette } from '@primeuix/themes'
 import Aura from '@primeuix/themes/aura'
+import { Chart as ChartJS } from 'chart.js'
 
 export const THEME_OPTIONS = {
   blue: {
@@ -49,6 +50,51 @@ export const THEME_OPTIONS = {
   }
 }
 
+export const TEXT_SIZE_OPTIONS = {
+  xs: {
+    key: 'xs',
+    shortLabel: 'XS',
+    label: 'Extra Small',
+    rootPx: 13,
+    scale: 13 / 16,
+    percent: '81%'
+  },
+  s: {
+    key: 's',
+    shortLabel: 'S',
+    label: 'Small',
+    rootPx: 14.5,
+    scale: 14.5 / 16,
+    percent: '91%'
+  },
+  m: {
+    key: 'm',
+    shortLabel: 'M',
+    label: 'Medium (Default)',
+    rootPx: 16,
+    scale: 1,
+    percent: '100%'
+  },
+  lg: {
+    key: 'lg',
+    shortLabel: 'LG',
+    label: 'Large',
+    rootPx: 18,
+    scale: 18 / 16,
+    percent: '113%'
+  },
+  xl: {
+    key: 'xl',
+    shortLabel: 'XL',
+    label: 'Extra Large',
+    rootPx: 20,
+    scale: 20 / 16,
+    percent: '125%'
+  }
+}
+
+export const TEXT_SIZE_LIST = Object.values(TEXT_SIZE_OPTIONS)
+
 export const CrmAuraPreset = definePreset(Aura, {
   primitive: {
     borderRadius: {
@@ -71,7 +117,6 @@ export const CrmAuraPreset = definePreset(Aura, {
       600: '{blue.600}',
       700: '{blue.700}',
       800: '{blue.800}',
-      900: '{blue.900}',
       950: '{blue.950}'
     },
     colorScheme: {
@@ -96,10 +141,35 @@ export const CrmAuraPreset = definePreset(Aura, {
 })
 
 export const currentThemeKey = ref('blue')
+export const currentTextSizeKey = ref('m')
 
 export const activeThemeMeta = computed(
   () => THEME_OPTIONS[currentThemeKey.value] ?? THEME_OPTIONS.blue
 )
+
+export const activeTextSizeMeta = computed(
+  () => TEXT_SIZE_OPTIONS[currentTextSizeKey.value] ?? TEXT_SIZE_OPTIONS.m
+)
+
+export function scaledFontSize(basePx) {
+  return Math.round(basePx * activeTextSizeMeta.value.scale * 10) / 10
+}
+
+export function applyTextSize(sizeKey) {
+  const normalized =
+    sizeKey === 'd' || sizeKey === 'default' ? 'm' : String(sizeKey || 'm').toLowerCase()
+  const meta = TEXT_SIZE_OPTIONS[normalized] ?? TEXT_SIZE_OPTIONS.m
+  currentTextSizeKey.value = meta.key
+
+  ChartJS.defaults.font.size = Math.round(12 * meta.scale * 10) / 10
+
+  if (typeof document !== 'undefined') {
+    const root = document.documentElement
+    root.style.fontSize = `${meta.rootPx}px`
+    root.style.setProperty('--crm-font-scale', String(meta.scale))
+    root.dataset.textSize = meta.key
+  }
+}
 
 export function applyThemePreset(key) {
   const meta = THEME_OPTIONS[key] ?? THEME_OPTIONS.blue

@@ -185,7 +185,7 @@ function handleSubmit() {
   <Drawer
     v-model:visible="store.leadFormVisible"
     position="right"
-    class="!w-full sm:!w-[540px]"
+    class="!w-full sm:!w-[33.75rem]"
     :pt="{
       header: { class: '!px-6 !py-4 border-b border-slate-200' },
       content: { class: '!p-0' },
@@ -225,7 +225,7 @@ function handleSubmit() {
               class="w-full"
               :invalid="Boolean(errors.name)"
             />
-            <p v-if="errors.name" class="text-[11px] text-rose-600">{{ errors.name }}</p>
+            <p v-if="errors.name" class="text-[0.6875rem] text-rose-600">{{ errors.name }}</p>
           </div>
 
           <div class="space-y-1.5">
@@ -239,7 +239,7 @@ function handleSubmit() {
               class="w-full"
               :invalid="Boolean(errors.company)"
             />
-            <p v-if="errors.company" class="text-[11px] text-rose-600">{{ errors.company }}</p>
+            <p v-if="errors.company" class="text-[0.6875rem] text-rose-600">{{ errors.company }}</p>
           </div>
 
           <div class="space-y-1.5">
@@ -254,7 +254,7 @@ function handleSubmit() {
               class="w-full"
               :invalid="Boolean(errors.email)"
             />
-            <p v-if="errors.email" class="text-[11px] text-rose-600">{{ errors.email }}</p>
+            <p v-if="errors.email" class="text-[0.6875rem] text-rose-600">{{ errors.email }}</p>
           </div>
 
           <div class="space-y-1.5">
@@ -268,7 +268,7 @@ function handleSubmit() {
               class="w-full"
               :invalid="Boolean(errors.phone)"
             />
-            <p v-if="errors.phone" class="text-[11px] text-rose-600">{{ errors.phone }}</p>
+            <p v-if="errors.phone" class="text-[0.6875rem] text-rose-600">{{ errors.phone }}</p>
           </div>
 
           <div class="space-y-1.5">
@@ -284,7 +284,7 @@ function handleSubmit() {
               class="w-full"
               :invalid="Boolean(errors.state)"
             />
-            <p v-if="errors.state" class="text-[11px] text-rose-600">{{ errors.state }}</p>
+            <p v-if="errors.state" class="text-[0.6875rem] text-rose-600">{{ errors.state }}</p>
           </div>
 
           <div class="space-y-1.5">
@@ -298,7 +298,7 @@ function handleSubmit() {
               class="w-full"
               :invalid="Boolean(errors.city)"
             />
-            <p v-if="errors.city" class="text-[11px] text-rose-600">{{ errors.city }}</p>
+            <p v-if="errors.city" class="text-[0.6875rem] text-rose-600">{{ errors.city }}</p>
           </div>
         </div>
       </section>
@@ -387,7 +387,7 @@ function handleSubmit() {
               input-class="w-full"
               :invalid="Boolean(errors.dealValue)"
             />
-            <p v-if="errors.dealValue" class="text-[11px] text-rose-600">
+            <p v-if="errors.dealValue" class="text-[0.6875rem] text-rose-600">
               {{ errors.dealValue }}
             </p>
           </div>

@@ -9,9 +9,9 @@ import KpiCard from '@/components/common/KpiCard.vue'
 import ChartCard from '@/components/common/ChartCard.vue'
 import UserAvatar from '@/components/common/UserAvatar.vue'
 import StatusTag from '@/components/common/StatusTag.vue'
-import { BASE_TOOLTIP_STYLE } from '@/utils/chartSetup'
+import { getBaseTooltipStyle } from '@/utils/chartSetup'
 import { PIPELINE_STAGES } from '@/utils/constants'
-import { activeThemeMeta } from '@/utils/themeManager'
+import { activeThemeMeta, scaledFontSize } from '@/utils/themeManager'
 import { useFormatters } from '@/composables/useFormatters'
 import { useCrmStore } from '@/stores/crmStore'
 
@@ -144,7 +144,7 @@ const monthlyChartData = computed(() => ({
   ]
 }))
 
-const lineChartOptions = {
+const lineChartOptions = computed(() => ({
   responsive: true,
   maintainAspectRatio: false,
   interaction: { mode: 'index', intersect: false },
@@ -152,20 +152,20 @@ const lineChartOptions = {
     legend: {
       position: 'top',
       align: 'end',
-      labels: { usePointStyle: true, boxWidth: 8, font: { size: 11 } }
+      labels: { usePointStyle: true, boxWidth: 8, font: { size: scaledFontSize(11) } }
     },
-    tooltip: { ...BASE_TOOLTIP_STYLE }
+    tooltip: { ...getBaseTooltipStyle() }
   },
   scales: {
-    x: { grid: { display: false }, ticks: { font: { size: 11 } }, border: { display: false } },
+    x: { grid: { display: false }, ticks: { font: { size: scaledFontSize(11) } }, border: { display: false } },
     y: {
       beginAtZero: true,
-      ticks: { precision: 0, font: { size: 11 } },
+      ticks: { precision: 0, font: { size: scaledFontSize(11) } },
       grid: { color: '#f1f5f9' },
       border: { display: false }
     }
   }
-}
+}))
 
 const pipelineDist = computed(() => {
   const scale = activeThemeMeta.value.chartScale
@@ -205,7 +205,7 @@ const pipelineChartOptions = computed(() => ({
   plugins: {
     legend: { display: false },
     tooltip: {
-      ...BASE_TOOLTIP_STYLE,
+      ...getBaseTooltipStyle(),
       callbacks: {
         label: (ctx) => {
           const item = pipelineDist.value[ctx.dataIndex]
@@ -215,11 +215,11 @@ const pipelineChartOptions = computed(() => ({
     }
   },
   scales: {
-    x: { grid: { display: false }, ticks: { font: { size: 11 } }, border: { display: false } },
+    x: { grid: { display: false }, ticks: { font: { size: scaledFontSize(11) } }, border: { display: false } },
     y: {
       beginAtZero: true,
       ticks: {
-        font: { size: 11 },
+        font: { size: scaledFontSize(11) },
         callback: (v) => `$${Math.round(Number(v) / 1000)}k`
       },
       grid: { color: '#f1f5f9' },
@@ -276,10 +276,10 @@ const sourceChartOptions = computed(() => ({
     legend: {
       position: 'top',
       align: 'end',
-      labels: { usePointStyle: true, boxWidth: 8, font: { size: 11 } }
+      labels: { usePointStyle: true, boxWidth: 8, font: { size: scaledFontSize(11) } }
     },
     tooltip: {
-      ...BASE_TOOLTIP_STYLE,
+      ...getBaseTooltipStyle(),
       callbacks: {
         afterBody: (items) => {
           const idx = items[0]?.dataIndex ?? 0
@@ -291,10 +291,10 @@ const sourceChartOptions = computed(() => ({
     }
   },
   scales: {
-    x: { grid: { display: false }, ticks: { font: { size: 11 } }, border: { display: false } },
+    x: { grid: { display: false }, ticks: { font: { size: scaledFontSize(11) } }, border: { display: false } },
     y: {
       beginAtZero: true,
-      ticks: { precision: 0, font: { size: 11 } },
+      ticks: { precision: 0, font: { size: scaledFontSize(11) } },
       grid: { color: '#f1f5f9' },
       border: { display: false }
     }
@@ -337,35 +337,35 @@ const regionalChartData = computed(() => ({
   ]
 }))
 
-const regionalChartOptions = {
+const regionalChartOptions = computed(() => ({
   responsive: true,
   maintainAspectRatio: false,
   plugins: {
     legend: {
       position: 'top',
       align: 'end',
-      labels: { usePointStyle: true, boxWidth: 8, font: { size: 11 } }
+      labels: { usePointStyle: true, boxWidth: 8, font: { size: scaledFontSize(11) } }
     },
     tooltip: {
-      ...BASE_TOOLTIP_STYLE,
+      ...getBaseTooltipStyle(),
       callbacks: {
         label: (ctx) => ` ${ctx.dataset.label}: $${(Number(ctx.raw) || 0).toLocaleString()}`
       }
     }
   },
   scales: {
-    x: { grid: { display: false }, ticks: { font: { size: 11 } }, border: { display: false } },
+    x: { grid: { display: false }, ticks: { font: { size: scaledFontSize(11) } }, border: { display: false } },
     y: {
       beginAtZero: true,
       ticks: {
-        font: { size: 11 },
+        font: { size: scaledFontSize(11) },
         callback: (v) => `$${Math.round(Number(v) / 1000)}k`
       },
       grid: { color: '#f1f5f9' },
       border: { display: false }
     }
   }
-}
+}))
 
 const employeeStats = computed(() => {
   return store.users
@@ -469,7 +469,7 @@ const sortedWorkerDeals = computed(() =>
         />
       </div>
 
-      <div class="flex items-center gap-2 text-[11px] text-slate-500">
+      <div class="flex items-center gap-2 text-[0.6875rem] text-slate-500">
         <i class="pi pi-info-circle text-slate-400" />
         <span>
           <strong>Conversion</strong> = Won ÷ Total Leads · Closed win rate:
@@ -571,7 +571,7 @@ const sortedWorkerDeals = computed(() =>
 
       <div class="xl:col-span-7 crm-card overflow-hidden">
         <div class="px-5 py-4 border-b border-slate-100">
-          <h3 class="text-[14px] font-semibold text-slate-900">Employee Performance Leaderboard</h3>
+          <h3 class="text-sm font-semibold text-slate-900">Employee Performance Leaderboard</h3>
           <p class="mt-0.5 text-xs text-slate-500">
             Ranked by closed-won revenue across assigned territories
           </p>
@@ -580,11 +580,11 @@ const sortedWorkerDeals = computed(() =>
         <DataTable :value="employeeStats" data-key="id" responsive-layout="scroll" class="crm-table">
           <Column header="Employee">
             <template #body="{ data }">
-              <div class="flex items-center gap-2.5 min-w-[140px]">
+              <div class="flex items-center gap-2.5 min-w-[8.75rem]">
                 <UserAvatar :name="data.name" :color="data.avatarColor" small />
                 <div class="min-w-0">
                   <p class="text-xs font-semibold text-slate-900 truncate">{{ data.name }}</p>
-                  <p class="text-[11px] text-slate-400 truncate">{{ data.role }}</p>
+                  <p class="text-[0.6875rem] text-slate-400 truncate">{{ data.role }}</p>
                 </div>
               </div>
             </template>
@@ -632,7 +632,7 @@ const sortedWorkerDeals = computed(() =>
     <div v-else class="crm-card overflow-hidden">
       <div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between gap-2">
         <div>
-          <h3 class="text-[14px] font-semibold text-slate-900">
+          <h3 class="text-sm font-semibold text-slate-900">
             My Portfolio Opportunities Ranked by Value
           </h3>
           <p class="mt-0.5 text-xs text-slate-500">
@@ -655,7 +655,7 @@ const sortedWorkerDeals = computed(() =>
               <p class="text-xs font-semibold text-slate-900 group-hover:underline">
                 {{ data.name }}
               </p>
-              <p class="text-[11px] text-slate-500">{{ data.company }} · {{ data.state }}</p>
+              <p class="text-[0.6875rem] text-slate-500">{{ data.company }} · {{ data.state }}</p>
             </button>
           </template>
         </Column>

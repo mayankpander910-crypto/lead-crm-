@@ -1,52 +1,58 @@
 import {
   Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  BarElement,
+  ArcElement,
   Title,
   Tooltip,
   Legend,
-  LineElement,
-  BarElement,
-  PointElement,
-  ArcElement,
-  CategoryScale,
-  LinearScale,
   Filler
 } from 'chart.js'
+import { scaledFontSize } from '@/utils/themeManager'
 
-ChartJS.register(
-  Title,
-  Tooltip,
-  Legend,
-  LineElement,
-  BarElement,
-  PointElement,
-  ArcElement,
-  CategoryScale,
-  LinearScale,
-  Filler
-)
+let registered = false
 
-ChartJS.defaults.font.family = "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-ChartJS.defaults.color = '#64748b'
+export function registerChartJs() {
+  if (registered) return
+  ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    BarElement,
+    ArcElement,
+    Title,
+    Tooltip,
+    Legend,
+    Filler
+  )
 
-export const BASE_TOOLTIP_STYLE = {
-  backgroundColor: '#0f172a',
-  titleColor: '#f8fafc',
-  bodyColor: '#e2e8f0',
-  borderColor: '#334155',
-  borderWidth: 1,
-  padding: 10,
-  cornerRadius: 10,
-  displayColors: true,
-  boxPadding: 4
+  ChartJS.defaults.font.family =
+    "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+  ChartJS.defaults.color = '#64748b'
+  ChartJS.defaults.font.size = 12
+  registered = true
 }
 
-export function createCartesianGridOptions() {
+registerChartJs()
+
+export function getBaseTooltipStyle() {
   return {
-    responsive: true,
-    maintainAspectRatio: false,
-    interaction: {
-      mode: 'index',
-      intersect: false
-    }
+    backgroundColor: '#0f172a',
+    titleColor: '#f8fafc',
+    bodyColor: '#e2e8f0',
+    borderColor: '#1e293b',
+    borderWidth: 1,
+    padding: 11,
+    cornerRadius: 8,
+    displayColors: true,
+    boxPadding: 5,
+    titleFont: { size: scaledFontSize(12), weight: 600 },
+    bodyFont: { size: scaledFontSize(12), weight: 500 }
   }
 }
+
+export const BASE_TOOLTIP_STYLE = getBaseTooltipStyle()

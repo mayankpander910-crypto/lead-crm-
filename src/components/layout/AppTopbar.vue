@@ -11,7 +11,7 @@ import { useConfirm } from 'primevue/useconfirm'
 import { useToast } from 'primevue/usetoast'
 import UserAvatar from '@/components/common/UserAvatar.vue'
 import StatusTag from '@/components/common/StatusTag.vue'
-import { THEME_OPTIONS } from '@/utils/themeManager'
+import { TEXT_SIZE_LIST, THEME_OPTIONS } from '@/utils/themeManager'
 import { useCrmStore } from '@/stores/crmStore'
 import { useFormatters } from '@/composables/useFormatters'
 
@@ -188,11 +188,11 @@ function categoryStyle(cat) {
           </button>
           <span class="hidden sm:inline text-slate-300 text-xs">/</span>
         </template>
-        <h1 class="text-[16px] sm:text-[17px] font-semibold tracking-tight text-slate-900 truncate">
+        <h1 class="text-base sm:text-[1.0625rem] font-semibold tracking-tight text-slate-900 truncate">
           {{ pageTitle }}
         </h1>
         <span
-          class="hidden xl:inline-flex items-center rounded-md px-2 py-0.5 text-[11px] font-semibold shrink-0 ml-1"
+          class="hidden xl:inline-flex items-center rounded-md px-2 py-0.5 text-[0.6875rem] font-semibold shrink-0 ml-1"
           :class="roleBadgeClasses"
         >
           {{ store.permissions.roleBadge }} · {{ store.permissions.scopeLabel }}
@@ -221,7 +221,7 @@ function categoryStyle(cat) {
           class="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 cursor-pointer"
           @click="store.globalSearchQuery = ''"
         >
-          <i class="pi pi-times text-[10px]" />
+          <i class="pi pi-times text-[0.625rem]" />
         </button>
 
         <div
@@ -229,12 +229,12 @@ function categoryStyle(cat) {
           class="absolute left-0 right-0 mt-1.5 rounded-xl bg-white border border-slate-200 shadow-lg overflow-hidden z-50"
         >
           <div class="px-3 py-2 border-b border-slate-100 flex items-center justify-between">
-            <span class="text-[10px] font-semibold uppercase tracking-wider text-slate-400">
+            <span class="text-[0.625rem] font-semibold uppercase tracking-wider text-slate-400">
               Matching Leads
             </span>
             <button
               type="button"
-              class="text-[11px] font-medium crm-accent-text hover:underline cursor-pointer"
+              class="text-[0.6875rem] font-medium crm-accent-text hover:underline cursor-pointer"
               @mousedown.prevent="handleSearchEnter"
             >
               Open table →
@@ -257,7 +257,7 @@ function categoryStyle(cat) {
               >
                 <div class="min-w-0">
                   <p class="text-xs font-semibold text-slate-900 truncate">{{ lead.name }}</p>
-                  <p class="text-[11px] text-slate-500 truncate">
+                  <p class="text-[0.6875rem] text-slate-500 truncate">
                     {{ lead.company }} · {{ formatCurrency(lead.dealValue) }}
                   </p>
                 </div>
@@ -283,12 +283,12 @@ function categoryStyle(cat) {
         <Popover ref="themePopover" class="!w-72 !p-0 !rounded-xl overflow-hidden">
           <div class="px-4 py-3 border-b border-slate-100">
             <p class="text-xs font-semibold text-slate-900">Appearance & Theme</p>
-            <p class="text-[11px] text-slate-500">Switch primary accent or sidebar finish</p>
+            <p class="text-[0.6875rem] text-slate-500">Switch primary accent or sidebar finish</p>
           </div>
 
           <div class="p-3.5 space-y-3.5">
             <div class="space-y-1.5">
-              <span class="text-[10px] font-semibold uppercase tracking-wider text-slate-400">
+              <span class="text-[0.625rem] font-semibold uppercase tracking-wider text-slate-400">
                 Accent Palette
               </span>
               <div class="grid grid-cols-2 gap-1.5">
@@ -314,7 +314,7 @@ function categoryStyle(cat) {
             </div>
 
             <div class="space-y-1.5 pt-2 border-t border-slate-100">
-              <span class="text-[10px] font-semibold uppercase tracking-wider text-slate-400">
+              <span class="text-[0.625rem] font-semibold uppercase tracking-wider text-slate-400">
                 Sidebar Surface
               </span>
               <div class="grid grid-cols-2 gap-1.5">
@@ -344,6 +344,40 @@ function categoryStyle(cat) {
                 </button>
               </div>
             </div>
+
+            <div class="space-y-1.5 pt-2 border-t border-slate-100">
+              <div class="flex items-center justify-between">
+                <span class="text-[0.625rem] font-semibold uppercase tracking-wider text-slate-400">
+                  Text Size
+                </span>
+                <button
+                  v-if="store.settings.textSize !== 'm'"
+                  type="button"
+                  class="text-[0.625rem] font-semibold crm-accent-text hover:underline cursor-pointer"
+                  @click="store.setTextSize('m')"
+                >
+                  Default (M)
+                </button>
+              </div>
+              <div class="grid grid-cols-5 gap-1">
+                <button
+                  v-for="sz in TEXT_SIZE_LIST"
+                  :key="sz.key"
+                  type="button"
+                  :data-testid="`topbar-text-size-${sz.key}`"
+                  :title="`${sz.label} (${sz.percent})`"
+                  class="rounded-lg border py-1.5 text-xs font-semibold transition-all cursor-pointer text-center"
+                  :class="
+                    store.settings.textSize === sz.key
+                      ? 'border-slate-900 bg-slate-900 text-white'
+                      : 'border-slate-200 text-slate-600 hover:bg-slate-50'
+                  "
+                  @click="store.setTextSize(sz.key)"
+                >
+                  {{ sz.shortLabel }}
+                </button>
+              </div>
+            </div>
           </div>
         </Popover>
       </div>
@@ -360,7 +394,7 @@ function categoryStyle(cat) {
         />
         <span
           v-if="store.unreadNotificationsCount > 0"
-          class="pointer-events-none absolute top-0 right-0 flex h-4 min-w-4 items-center justify-center rounded-full px-1 text-[10px] font-bold text-white ring-2 ring-white"
+          class="pointer-events-none absolute top-0 right-0 flex h-4 min-w-4 items-center justify-center rounded-full px-1 text-[0.625rem] font-bold text-white ring-2 ring-white"
           :style="{ backgroundColor: 'var(--crm-accent)' }"
         >
           {{ store.unreadNotificationsCount }}
@@ -420,7 +454,7 @@ function categoryStyle(cat) {
                   <p class="mt-0.5 text-xs text-slate-600 line-clamp-2 leading-relaxed">
                     {{ notif.message }}
                   </p>
-                  <span class="mt-1 block text-[11px] text-slate-400">
+                  <span class="mt-1 block text-[0.6875rem] text-slate-400">
                     {{ formatRelativeTime(notif.timestamp) }}
                   </span>
                 </div>
@@ -454,11 +488,11 @@ function categoryStyle(cat) {
             <span class="block text-xs font-semibold text-slate-900 leading-tight max-w-28 truncate">
               {{ store.currentUser.name.split(' ')[0] }}
             </span>
-            <span class="block text-[10px] font-medium text-slate-500 leading-tight">
+            <span class="block text-[0.625rem] font-medium text-slate-500 leading-tight">
               {{ store.permissions.roleBadge }}
             </span>
           </span>
-          <i class="pi pi-chevron-down text-[10px] text-slate-400 hidden sm:inline" />
+          <i class="pi pi-chevron-down text-[0.625rem] text-slate-400 hidden sm:inline" />
         </button>
 
         <Popover ref="accountPopover" class="!w-76 !p-0 !rounded-xl overflow-hidden">
@@ -473,20 +507,20 @@ function categoryStyle(cat) {
                   {{ store.currentUser.name }}
                 </p>
                 <span
-                  class="inline-flex items-center rounded px-1.5 py-0.5 text-[10px] font-semibold shrink-0"
+                  class="inline-flex items-center rounded px-1.5 py-0.5 text-[0.625rem] font-semibold shrink-0"
                   :class="roleBadgeClasses"
                 >
                   {{ store.permissions.roleBadge }}
                 </span>
               </div>
-              <p class="text-[11px] text-slate-500 truncate mt-0.5">
+              <p class="text-[0.6875rem] text-slate-500 truncate mt-0.5">
                 {{ store.currentUser.email }}
               </p>
             </div>
           </div>
 
           <div class="p-2.5 border-b border-slate-100 space-y-1">
-            <p class="px-2 pb-1 text-[10px] font-semibold uppercase tracking-wider text-slate-400">
+            <p class="px-2 pb-1 text-[0.625rem] font-semibold uppercase tracking-wider text-slate-400">
               Switch Role Session
             </p>
             <button
@@ -505,7 +539,7 @@ function categoryStyle(cat) {
                 <UserAvatar :name="u.name" :color="u.avatarColor" small />
                 <span class="truncate">{{ u.name }}</span>
               </span>
-              <span class="text-[10px] font-medium text-slate-500 shrink-0">
+              <span class="text-[0.625rem] font-medium text-slate-500 shrink-0">
                 {{ u.role === 'Sales Representative' ? 'Worker' : u.role }}
               </span>
             </button>

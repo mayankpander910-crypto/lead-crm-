@@ -2,9 +2,9 @@
 import { computed } from 'vue'
 import { Bar } from 'vue-chartjs'
 import ChartCard from '@/components/common/ChartCard.vue'
-import { BASE_TOOLTIP_STYLE } from '@/utils/chartSetup'
+import { getBaseTooltipStyle } from '@/utils/chartSetup'
 import { PIPELINE_STAGES } from '@/utils/constants'
-import { activeThemeMeta } from '@/utils/themeManager'
+import { activeThemeMeta, scaledFontSize } from '@/utils/themeManager'
 import { useCrmStore } from '@/stores/crmStore'
 
 const store = useCrmStore()
@@ -50,7 +50,7 @@ const chartOptions = computed(() => ({
   plugins: {
     legend: { display: false },
     tooltip: {
-      ...BASE_TOOLTIP_STYLE,
+      ...getBaseTooltipStyle(),
       callbacks: {
         afterBody: (items) => {
           const idx = items[0]?.dataIndex ?? 0
@@ -63,13 +63,13 @@ const chartOptions = computed(() => ({
   scales: {
     x: {
       beginAtZero: true,
-      ticks: { precision: 0, color: '#64748b', font: { size: 11 } },
+      ticks: { precision: 0, color: '#64748b', font: { size: scaledFontSize(11) } },
       grid: { color: '#f1f5f9' },
       border: { display: false }
     },
     y: {
       grid: { display: false },
-      ticks: { color: '#334155', font: { size: 11, weight: 500 } },
+      ticks: { color: '#334155', font: { size: scaledFontSize(11), weight: 500 } },
       border: { display: false }
     }
   }

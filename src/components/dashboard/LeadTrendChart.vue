@@ -2,8 +2,8 @@
 import { computed, ref } from 'vue'
 import { Line } from 'vue-chartjs'
 import ChartCard from '@/components/common/ChartCard.vue'
-import { BASE_TOOLTIP_STYLE } from '@/utils/chartSetup'
-import { activeThemeMeta } from '@/utils/themeManager'
+import { getBaseTooltipStyle } from '@/utils/chartSetup'
+import { activeThemeMeta, scaledFontSize } from '@/utils/themeManager'
 import { useCrmStore } from '@/stores/crmStore'
 
 const store = useCrmStore()
@@ -104,7 +104,7 @@ const chartOptions = computed(() => ({
   plugins: {
     legend: { display: false },
     tooltip: {
-      ...BASE_TOOLTIP_STYLE,
+      ...getBaseTooltipStyle(),
       callbacks: {
         afterBody: (items) => {
           const idx = items[0]?.dataIndex ?? 0
@@ -117,12 +117,12 @@ const chartOptions = computed(() => ({
   scales: {
     x: {
       grid: { display: false },
-      ticks: { color: '#64748b', font: { size: 11 } },
+      ticks: { color: '#64748b', font: { size: scaledFontSize(11) } },
       border: { display: false }
     },
     y: {
       beginAtZero: true,
-      ticks: { stepSize: 2, precision: 0, color: '#64748b', font: { size: 11 } },
+      ticks: { stepSize: 2, precision: 0, color: '#64748b', font: { size: scaledFontSize(11) } },
       grid: { color: '#f1f5f9' },
       border: { display: false }
     }
@@ -140,7 +140,7 @@ const chartOptions = computed(() => ({
       <div class="inline-flex rounded-lg bg-slate-100 p-0.5 text-xs">
         <button
           type="button"
-          class="rounded-md px-2.5 py-1 text-[11px] font-medium transition-all cursor-pointer"
+          class="rounded-md px-2.5 py-1 text-[0.6875rem] font-medium transition-all cursor-pointer"
           :class="
             granularity === 'monthly'
               ? 'bg-white text-slate-900 shadow-2xs font-semibold'
@@ -152,7 +152,7 @@ const chartOptions = computed(() => ({
         </button>
         <button
           type="button"
-          class="rounded-md px-2.5 py-1 text-[11px] font-medium transition-all cursor-pointer"
+          class="rounded-md px-2.5 py-1 text-[0.6875rem] font-medium transition-all cursor-pointer"
           :class="
             granularity === 'biweekly'
               ? 'bg-white text-slate-900 shadow-2xs font-semibold'

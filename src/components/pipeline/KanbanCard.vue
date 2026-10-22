@@ -44,7 +44,7 @@ function onNativeDragStart(e) {
       @click="store.openLeadDetailDrawer(lead.id)"
     >
       <h4
-        class="text-[13px] font-semibold text-slate-900 group-hover:underline transition-colors leading-snug truncate"
+        class="text-[0.8125rem] font-semibold text-slate-900 group-hover:underline transition-colors leading-snug truncate"
       >
         {{ lead.name }}
       </h4>
@@ -60,14 +60,14 @@ function onNativeDragStart(e) {
           :color="store.getUserById(lead.assignedTo)?.avatarColor ?? '#64748b'"
           small
         />
-        <span class="text-[11px] font-medium text-slate-600 truncate">
+        <span class="text-[0.6875rem] font-medium text-slate-600 truncate">
           {{ store.getUserName(lead.assignedTo).split(' ')[0] }}
         </span>
       </div>
 
       <span
         v-if="lead.nextFollowUp"
-        class="text-[11px] tabular-nums shrink-0"
+        class="text-[0.6875rem] tabular-nums shrink-0"
         :class="
           lead.status !== 'Won' &&
           lead.status !== 'Lost' &&
@@ -76,7 +76,7 @@ function onNativeDragStart(e) {
             : 'text-slate-400'
         "
       >
-        <i class="pi pi-calendar text-[10px] mr-0.5" />
+        <i class="pi pi-calendar text-[0.625rem] mr-0.5" />
         {{ formatShortDate(lead.nextFollowUp) }}
       </span>
     </div>
@@ -87,9 +87,9 @@ function onNativeDragStart(e) {
         :options="PIPELINE_STAGES"
         size="small"
         aria-label="Change pipeline stage"
-        class="w-full !text-[11px] !rounded-md !bg-slate-50/80"
+        class="w-full !text-[0.6875rem] !rounded-md !bg-slate-50/80"
         :pt="{
-          label: { class: '!py-1 !px-2.5 !text-[11px] font-medium text-slate-600' },
+          label: { class: '!py-1 !px-2.5 !text-[0.6875rem] font-medium text-slate-600' },
           dropdown: { class: '!w-7' }
         }"
         @update:model-value="(val) => $emit('changeStage', lead.id, val)"

@@ -199,12 +199,12 @@ function handleCreateMember() {
                   {{ data.name }}
                   <span
                     v-if="data.id === store.currentUser.id"
-                    class="ml-1 text-[10px] font-medium crm-accent-soft px-1.5 py-0.5 rounded"
+                    class="ml-1 text-[0.625rem] font-medium crm-accent-soft px-1.5 py-0.5 rounded"
                   >
                     You
                   </span>
                 </p>
-                <p class="text-[11px] text-slate-400">{{ data.department }} · {{ data.region }}</p>
+                <p class="text-[0.6875rem] text-slate-400">{{ data.department }} · {{ data.region }}</p>
               </div>
             </div>
           </template>

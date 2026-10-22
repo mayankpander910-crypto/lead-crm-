@@ -21,13 +21,13 @@ const store = useCrmStore()
   >
     <div class="flex items-start justify-between gap-3">
       <div class="min-w-0 flex-1">
-        <p class="text-[11px] font-semibold uppercase tracking-wider text-slate-500 truncate">
+        <p class="text-[0.6875rem] font-semibold uppercase tracking-wider text-slate-500 truncate">
           {{ label }}
         </p>
         <p class="mt-2 text-[1.65rem] font-bold tracking-tight text-slate-900 tabular-nums leading-none">
           {{ value }}
         </p>
-        <p v-if="subValue" class="mt-2 text-xs text-slate-500 truncate tabular-nums">
+        <p v-if="subValue" class="mt-2 text-xs text-slate-500 leading-snug tabular-nums">
           {{ subValue }}
         </p>
       </div>
@@ -45,7 +45,7 @@ const store = useCrmStore()
       class="pt-2.5 border-t border-slate-100 flex items-center gap-2 text-xs whitespace-nowrap"
     >
       <span
-        class="inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 text-[11px] font-semibold tabular-nums"
+        class="inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 text-[0.6875rem] font-semibold tabular-nums"
         :class="
           trendPercent >= 0
             ? 'bg-emerald-50 text-emerald-700 ring-1 ring-inset ring-emerald-600/20'
@@ -53,12 +53,12 @@ const store = useCrmStore()
         "
       >
         <i
-          class="text-[10px]"
+          class="text-[0.625rem]"
           :class="trendPercent >= 0 ? 'pi pi-arrow-up-right' : 'pi pi-arrow-down-right'"
         />
         {{ trendPercent >= 0 ? '+' : '' }}{{ trendPercent }}%
       </span>
-      <span class="text-slate-400 text-[11px]">{{ trendLabel }}</span>
+      <span class="text-slate-400 text-[0.6875rem]">{{ trendLabel }}</span>
     </div>
   </div>
 </template>

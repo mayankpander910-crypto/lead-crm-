@@ -2,8 +2,8 @@
 import { computed } from 'vue'
 import { Bar } from 'vue-chartjs'
 import ChartCard from '@/components/common/ChartCard.vue'
-import { BASE_TOOLTIP_STYLE } from '@/utils/chartSetup'
-import { activeThemeMeta } from '@/utils/themeManager'
+import { getBaseTooltipStyle } from '@/utils/chartSetup'
+import { activeThemeMeta, scaledFontSize } from '@/utils/themeManager'
 import { useCrmStore } from '@/stores/crmStore'
 
 const store = useCrmStore()
@@ -44,7 +44,7 @@ const chartOptions = computed(() => ({
   plugins: {
     legend: { display: false },
     tooltip: {
-      ...BASE_TOOLTIP_STYLE,
+      ...getBaseTooltipStyle(),
       callbacks: {
         afterBody: (items) => {
           const idx = items[0]?.dataIndex ?? 0
@@ -57,12 +57,12 @@ const chartOptions = computed(() => ({
   scales: {
     x: {
       grid: { display: false },
-      ticks: { color: '#475569', font: { size: 11 } },
+      ticks: { color: '#475569', font: { size: scaledFontSize(11) } },
       border: { display: false }
     },
     y: {
       beginAtZero: true,
-      ticks: { precision: 0, color: '#64748b', font: { size: 11 } },
+      ticks: { precision: 0, color: '#64748b', font: { size: scaledFontSize(11) } },
       grid: { color: '#f1f5f9' },
       border: { display: false }
     }

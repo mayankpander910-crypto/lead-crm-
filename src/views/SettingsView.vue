@@ -11,7 +11,7 @@ import { useToast } from 'primevue/usetoast'
 import StatusTag from '@/components/common/StatusTag.vue'
 import UserAvatar from '@/components/common/UserAvatar.vue'
 import { PIPELINE_STAGES, USER_ROLES } from '@/utils/constants'
-import { THEME_OPTIONS } from '@/utils/themeManager'
+import { activeTextSizeMeta, TEXT_SIZE_LIST, THEME_OPTIONS } from '@/utils/themeManager'
 import { useCrmStore } from '@/stores/crmStore'
 
 const store = useCrmStore()
@@ -199,7 +199,7 @@ function handleResetData() {
   <div class="max-w-5xl space-y-6">
     <section class="crm-card p-6 space-y-5">
       <div class="border-b border-slate-100 pb-3.5">
-        <h3 class="text-[14px] font-semibold text-slate-900">Theme & Workspace Appearance</h3>
+        <h3 class="text-sm font-semibold text-slate-900">Theme & Workspace Appearance</h3>
         <p class="mt-0.5 text-xs text-slate-500">
           Select your preferred PrimeVue Aura primary accent color and sidebar surface finish.
         </p>
@@ -224,7 +224,7 @@ function handleResetData() {
           />
           <div>
             <p class="text-xs font-semibold text-slate-900">{{ opt.label }}</p>
-            <p class="mt-0.5 text-[11px] text-slate-500">{{ opt.description }}</p>
+            <p class="mt-0.5 text-[0.6875rem] text-slate-500">{{ opt.description }}</p>
           </div>
         </button>
       </div>
@@ -264,6 +264,60 @@ function handleResetData() {
           </button>
         </div>
       </div>
+
+      <!-- Global Dashboard Text Size Setting (XS, S, M, LG, XL) -->
+      <div class="pt-4 space-y-3 border-t border-slate-100" data-testid="settings-text-size-section">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <div class="flex items-center gap-2">
+              <p class="text-xs font-semibold text-slate-800">Dashboard Text Size</p>
+              <span class="rounded-md bg-blue-50 px-2 py-0.5 text-[0.625rem] font-semibold text-blue-700">
+                {{ activeTextSizeMeta.label }} · {{ activeTextSizeMeta.percent }}
+              </span>
+            </div>
+            <p class="text-xs text-slate-500 mt-0.5">
+              Scales every heading, table cell, sidebar link, KPI card, badge, button, and chart across the entire CRM.
+            </p>
+          </div>
+
+          <button
+            type="button"
+            class="rounded-lg border px-2.5 py-1 text-xs font-medium transition-all cursor-pointer"
+            :class="
+              store.settings.textSize === 'm'
+                ? 'border-slate-200 bg-slate-50 text-slate-400'
+                : 'border-slate-300 bg-white text-slate-700 hover:bg-slate-50'
+            "
+            @click="store.setTextSize('m')"
+          >
+            Default (M)
+          </button>
+        </div>
+
+        <div class="grid grid-cols-5 gap-2.5">
+          <button
+            v-for="sz in TEXT_SIZE_LIST"
+            :key="sz.key"
+            type="button"
+            :data-testid="`settings-text-size-${sz.key}`"
+            class="rounded-xl border p-3 flex flex-col items-center justify-center text-center gap-1 transition-all cursor-pointer"
+            :class="
+              store.settings.textSize === sz.key
+                ? 'border-slate-900 bg-slate-900 text-white shadow-xs'
+                : 'border-slate-200 bg-white text-slate-700 hover:border-slate-300 hover:bg-slate-50'
+            "
+            @click="store.setTextSize(sz.key)"
+          >
+            <span class="text-sm font-bold tracking-tight">{{ sz.shortLabel }}</span>
+            <span
+              class="text-[0.625rem]"
+              :class="store.settings.textSize === sz.key ? 'text-slate-300' : 'text-slate-400'"
+            >
+              {{ sz.key === 'm' ? 'Default' : sz.percent }}
+            </span>
+          </button>
+        </div>
+      </div>
     </section>
 
     <section class="crm-card p-6 space-y-5">
@@ -276,7 +330,7 @@ function handleResetData() {
           />
           <div>
             <div class="flex items-center gap-2">
-              <h3 class="text-[14px] font-semibold text-slate-900">Account & Session Profile</h3>
+              <h3 class="text-sm font-semibold text-slate-900">Account & Session Profile</h3>
               <StatusTag :value="store.currentUser.role" variant="role" />
             </div>
             <p class="text-xs text-slate-500 mt-0.5">
@@ -347,7 +401,7 @@ function handleResetData() {
     <template v-if="store.permissions.canManageWorkspaceSettings">
       <section class="crm-card p-6 space-y-5">
         <div class="border-b border-slate-100 pb-3.5">
-          <h3 class="text-[14px] font-semibold text-slate-900">Organization Display Defaults</h3>
+          <h3 class="text-sm font-semibold text-slate-900">Organization Display Defaults</h3>
           <p class="mt-0.5 text-xs text-slate-500">
             Configure workspace branding, default pagination size, and KPI comparison badges.
           </p>
@@ -408,7 +462,7 @@ function handleResetData() {
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <section class="crm-card p-6 space-y-4">
           <div>
-            <h3 class="text-[14px] font-semibold text-slate-900">Lead Pipeline Statuses</h3>
+            <h3 class="text-sm font-semibold text-slate-900">Lead Pipeline Statuses</h3>
             <p class="mt-0.5 text-xs text-slate-500">
               Configure active pipeline stages available when creating or editing leads.
             </p>
@@ -432,7 +486,7 @@ function handleResetData() {
 
         <section class="crm-card p-6 space-y-4">
           <div>
-            <h3 class="text-[14px] font-semibold text-slate-900">Lead Acquisition Sources</h3>
+            <h3 class="text-sm font-semibold text-slate-900">Lead Acquisition Sources</h3>
             <p class="mt-0.5 text-xs text-slate-500">
               Manage attribution channels shown in forms, tables, and analytics.
             </p>
@@ -461,7 +515,7 @@ function handleResetData() {
                 class="text-slate-400 hover:text-rose-600 cursor-pointer"
                 @click="removeLeadSource(src)"
               >
-                <i class="pi pi-times text-[10px]" />
+                <i class="pi pi-times text-[0.625rem]" />
               </button>
             </span>
           </div>
@@ -495,7 +549,7 @@ function handleResetData() {
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
       <section class="crm-card p-6 space-y-4">
         <div>
-          <h3 class="text-[14px] font-semibold text-slate-900">In-App Notification Preferences</h3>
+          <h3 class="text-sm font-semibold text-slate-900">In-App Notification Preferences</h3>
           <p class="mt-0.5 text-xs text-slate-500">
             Control which sales events create alerts in the top notification feed.
           </p>
@@ -523,7 +577,7 @@ function handleResetData() {
 
       <section class="crm-card p-6 flex flex-col justify-between gap-4">
         <div>
-          <h3 class="text-[14px] font-semibold text-slate-900">LocalStorage & Workspace Backup</h3>
+          <h3 class="text-sm font-semibold text-slate-900">LocalStorage & Workspace Backup</h3>
           <p class="mt-1 text-xs leading-relaxed text-slate-500">
             All changes to leads, pipeline stages, tasks, and user accounts persist automatically in browser LocalStorage. Export a JSON snapshot anytime{{ store.permissions.isAdmin ? ' or reset back to clean seed data' : '' }}.
           </p>

@@ -20,7 +20,7 @@ const initials = computed(() => getInitials(props.name))
     shape="circle"
     :size="size"
     class="font-semibold select-none shrink-0"
-    :class="small ? '!w-7 !h-7 !text-[11px]' : '!text-xs'"
+    :class="small ? '!w-7 !h-7 !text-[0.6875rem]' : '!text-xs'"
     :style="{
       backgroundColor: `${color}16`,
       color: color,

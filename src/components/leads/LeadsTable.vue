@@ -426,7 +426,7 @@ function handleExportCsv() {
       >
         <Column selection-mode="multiple" header-style="width: 2.75rem" />
 
-        <Column field="name" header="Lead Name" sortable style="min-width: 175px">
+        <Column field="name" header="Lead Name" sortable style="min-width: 11rem">
           <template #body="{ data }">
             <button
               type="button"
@@ -440,7 +440,7 @@ function handleExportCsv() {
                 >
                   {{ data.name }}
                 </p>
-                <p class="text-[11px] text-slate-500 tabular-nums">
+                <p class="text-[0.6875rem] text-slate-500 tabular-nums">
                   {{ formatCurrency(data.dealValue) }}
                 </p>
               </div>
@@ -448,13 +448,13 @@ function handleExportCsv() {
           </template>
         </Column>
 
-        <Column field="company" header="Company" sortable style="min-width: 155px">
+        <Column field="company" header="Company" sortable style="min-width: 9.7rem">
           <template #body="{ data }">
             <span class="text-xs font-medium text-slate-800">{{ data.company }}</span>
           </template>
         </Column>
 
-        <Column field="email" header="Email" style="min-width: 185px">
+        <Column field="email" header="Email" style="min-width: 11.5rem">
           <template #body="{ data }">
             <a
               :href="`mailto:${data.email}`"
@@ -465,7 +465,7 @@ function handleExportCsv() {
           </template>
         </Column>
 
-        <Column field="phone" header="Phone" style="min-width: 138px">
+        <Column field="phone" header="Phone" style="min-width: 8.6rem">
           <template #body="{ data }">
             <span class="text-xs text-slate-600 whitespace-nowrap tabular-nums">
               {{ data.phone }}
@@ -473,32 +473,32 @@ function handleExportCsv() {
           </template>
         </Column>
 
-        <Column field="state" header="State / Region" sortable style="min-width: 130px">
+        <Column field="state" header="State / Region" sortable style="min-width: 8.1rem">
           <template #body="{ data }">
             <div>
               <p class="text-xs text-slate-800">{{ data.state }}</p>
-              <p class="text-[11px] text-slate-400">{{ data.city }}</p>
+              <p class="text-[0.6875rem] text-slate-400">{{ data.city }}</p>
             </div>
           </template>
         </Column>
 
-        <Column field="category" header="Category" sortable style="min-width: 125px">
+        <Column field="category" header="Category" sortable style="min-width: 7.8rem">
           <template #body="{ data }">
             <span
-              class="inline-flex items-center rounded-md bg-slate-100 px-2 py-0.5 text-[11px] font-medium text-slate-700 whitespace-nowrap"
+              class="inline-flex items-center rounded-md bg-slate-100 px-2 py-0.5 text-[0.6875rem] font-medium text-slate-700 whitespace-nowrap"
             >
               {{ data.category }}
             </span>
           </template>
         </Column>
 
-        <Column field="source" header="Source" sortable style="min-width: 115px">
+        <Column field="source" header="Source" sortable style="min-width: 7.2rem">
           <template #body="{ data }">
             <span class="text-xs text-slate-600 whitespace-nowrap">{{ data.source }}</span>
           </template>
         </Column>
 
-        <Column field="assignedTo" header="Assigned Rep" sortable style="min-width: 155px">
+        <Column field="assignedTo" header="Assigned Rep" sortable style="min-width: 9.7rem">
           <template #body="{ data }">
             <div class="flex items-center gap-2">
               <UserAvatar
@@ -513,19 +513,19 @@ function handleExportCsv() {
           </template>
         </Column>
 
-        <Column field="status" header="Status" sortable style="min-width: 118px">
+        <Column field="status" header="Status" sortable style="min-width: 7.4rem">
           <template #body="{ data }">
             <StatusTag :value="data.status" variant="stage" />
           </template>
         </Column>
 
-        <Column field="priority" header="Priority" sortable style="min-width: 98px">
+        <Column field="priority" header="Priority" sortable style="min-width: 6.1rem">
           <template #body="{ data }">
             <StatusTag :value="data.priority" variant="priority" />
           </template>
         </Column>
 
-        <Column field="nextFollowUp" header="Next Follow-up" sortable style="min-width: 120px">
+        <Column field="nextFollowUp" header="Next Follow-up" sortable style="min-width: 7.5rem">
           <template #body="{ data }">
             <span
               v-if="data.nextFollowUp"
@@ -544,7 +544,7 @@ function handleExportCsv() {
                   data.status !== 'Lost' &&
                   isDateOverdue(data.nextFollowUp)
                 "
-                class="pi pi-exclamation-circle text-[11px]"
+                class="pi pi-exclamation-circle text-[0.6875rem]"
               />
               {{ formatShortDate(data.nextFollowUp) }}
             </span>
@@ -552,7 +552,7 @@ function handleExportCsv() {
           </template>
         </Column>
 
-        <Column header="Actions" align-frozen="right" frozen style="min-width: 100px">
+        <Column header="Actions" align-frozen="right" frozen style="min-width: 6.25rem">
           <template #body="{ data }">
             <div class="flex items-center gap-0.5">
               <Button

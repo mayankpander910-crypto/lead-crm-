@@ -19,13 +19,14 @@ import {
   DEFAULT_LEAD_SOURCES,
   PIPELINE_STAGES
 } from '@/utils/constants'
-import { applyThemePreset } from '@/utils/themeManager'
+import { applyTextSize, applyThemePreset } from '@/utils/themeManager'
 
 const DEFAULT_SETTINGS = {
   workspaceName: 'PulseCRM',
   currentUserId: 'usr-1',
   themePreset: 'blue',
   sidebarStyle: 'dark',
+  textSize: 'm',
   defaultLandingRoute: '/',
   defaultTableRows: 10,
   compactTables: false,
@@ -56,11 +57,19 @@ export const useCrmStore = defineStore('crm', () => {
   const authSession = ref(loadNullableFromStorage(STORAGE_KEYS.authSession))
 
   applyThemePreset(settings.value.themePreset || 'blue')
+  applyTextSize(settings.value.textSize || 'm')
 
   watch(
     () => settings.value.themePreset,
     (nextTheme) => {
       if (nextTheme) applyThemePreset(nextTheme)
+    }
+  )
+
+  watch(
+    () => settings.value.textSize,
+    (nextSize) => {
+      applyTextSize(nextSize || 'm')
     }
   )
 
@@ -365,6 +374,13 @@ export const useCrmStore = defineStore('crm', () => {
     settings.value.sidebarStyle = style
   }
 
+  function setTextSize(size) {
+    const normalized =
+      size === 'd' || size === 'default' ? 'm' : String(size || 'm').toLowerCase()
+    settings.value.textSize = normalized
+    applyTextSize(normalized)
+  }
+
   function logActivity(params) {
     const entry = {
       id: `act-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
@@ -667,6 +683,7 @@ export const useCrmStore = defineStore('crm', () => {
   function resetDemoData() {
     const keptTheme = settings.value.themePreset
     const keptSidebar = settings.value.sidebarStyle
+    const keptTextSize = settings.value.textSize || 'm'
     const activeUserId = authSession.value?.userId ?? 'usr-1'
     clearCrmStorage(true)
     allLeads.value = cloneSeed(leadsSeed)
@@ -678,9 +695,11 @@ export const useCrmStore = defineStore('crm', () => {
       ...cloneSeed(DEFAULT_SETTINGS),
       currentUserId: activeUserId,
       themePreset: keptTheme,
-      sidebarStyle: keptSidebar
+      sidebarStyle: keptSidebar,
+      textSize: keptTextSize
     }
     applyThemePreset(settings.value.themePreset)
+    applyTextSize(settings.value.textSize)
     globalSearchQuery.value = ''
     selectedLeadId.value = null
     leadDetailVisible.value = false
@@ -727,6 +746,7 @@ export const useCrmStore = defineStore('crm', () => {
     getTaskBucket,
     setTheme,
     setSidebarStyle,
+    setTextSize,
     createLead,
     updateLead,
     addLeadNote,

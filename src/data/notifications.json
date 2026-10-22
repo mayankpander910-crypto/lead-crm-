@@ -1,0 +1,52 @@
+[
+  {
+    "id": "notif-401",
+    "title": "Overdue Follow-up Reminder",
+    "message": "Redwood Grid Power ($64,000) procurement check-in was due Oct 19.",
+    "category": "reminder",
+    "read": false,
+    "timestamp": "2026-10-21T08:00:00Z",
+    "route": "/tasks",
+    "leadId": "lead-111"
+  },
+  {
+    "id": "notif-402",
+    "title": "High-Value Inbound Lead",
+    "message": "Rachel Goldstein (Aether Analytics — $74,000) requested a live product tour.",
+    "category": "lead",
+    "read": false,
+    "timestamp": "2026-10-21T07:16:00Z",
+    "route": "/leads",
+    "leadId": "lead-110"
+  },
+  {
+    "id": "notif-403",
+    "title": "Executive Call Today at 3:00 PM",
+    "message": "VectorDB Cloud ($128,000) final MSA alignment call is scheduled today.",
+    "category": "reminder",
+    "read": false,
+    "timestamp": "2026-10-21T06:55:00Z",
+    "route": "/tasks",
+    "leadId": "lead-139"
+  },
+  {
+    "id": "notif-404",
+    "title": "Deal Won — Solstice Freight ($85,000)",
+    "message": "Sofia Alvarez closed Solstice Freight Co. on an annual enterprise plan.",
+    "category": "deal",
+    "read": true,
+    "timestamp": "2026-10-19T18:06:00Z",
+    "route": "/pipeline",
+    "leadId": "lead-104"
+  },
+  {
+    "id": "notif-405",
+    "title": "Deal Won — Harborview Wealth ($112,000)",
+    "message": "Noah Sterling closed Harborview Wealth across the wealth advisory division.",
+    "category": "deal",
+    "read": true,
+    "timestamp": "2026-10-17T17:22:00Z",
+    "route": "/analytics",
+    "leadId": "lead-108"
+  }
+]

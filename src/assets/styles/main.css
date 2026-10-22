@@ -1,0 +1,124 @@
+@layer theme, base, primevue, components, utilities;
+@import "tailwindcss";
+
+:root {
+  --crm-accent: #2563eb;
+  --crm-accent-hover: #1d4ed8;
+  --crm-accent-soft: #eff6ff;
+  --crm-accent-muted: rgba(37, 99, 235, 0.12);
+  --crm-surface: #ffffff;
+  --crm-bg: #f8fafc;
+  --crm-border: #e2e8f0;
+  --crm-text: #0f172a;
+  --crm-muted: #64748b;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color-scheme: light;
+}
+
+html,
+body {
+  background-color: var(--crm-bg);
+  color: var(--crm-text);
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  letter-spacing: -0.018em;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.crm-accent-bg {
+  background-color: var(--crm-accent);
+}
+
+.crm-accent-text {
+  color: var(--crm-accent);
+}
+
+.crm-accent-soft {
+  background-color: var(--crm-accent-soft);
+  color: var(--crm-accent);
+}
+
+/* Subtle custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Executive PrimeVue DataTable surface & spacing refinement */
+.crm-table .p-datatable-thead > tr > th {
+  background-color: #f8fafc;
+  color: #64748b;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+  border-color: #e2e8f0;
+  padding: 0.7rem 0.875rem;
+  white-space: nowrap;
+}
+
+.crm-table .p-datatable-tbody > tr > td {
+  border-color: #f1f5f9;
+  padding: 0.75rem 0.875rem;
+  font-size: 0.8125rem;
+  line-height: 1.35;
+  color: #1e293b;
+  vertical-align: middle;
+}
+
+.crm-table .p-datatable-tbody > tr {
+  transition: background-color 120ms ease;
+}
+
+.crm-table .p-datatable-tbody > tr:hover {
+  background-color: #f8fafc;
+}
+
+.crm-table .p-paginator {
+  border-top: 1px solid #e2e8f0;
+  padding: 0.6rem 0.875rem;
+  background: #ffffff;
+  font-size: 0.8125rem;
+}
+
+.crm-table .p-datatable-frozen-column {
+  background: #ffffff;
+  box-shadow: -6px 0 12px -6px rgba(15, 23, 42, 0.08);
+}
+
+.crm-table .p-datatable-thead > tr > th.p-datatable-frozen-column {
+  background: #f8fafc;
+}
+
+/* Crisp SaaS card container */
+.crm-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 2px 0 rgba(15, 23, 42, 0.03);
+}
